@@ -12,7 +12,7 @@ Example
 1) Add the sortable order to your .find, or .paginate
 
 def index
-  @blobs = Blob.all(:order => sortable_order(Blob))
+  @blobs = Blob.all(:order => sortable_order(Blob, :custom_keys => { 'association_object' => 'association_objects.name' ))
 end
 
 2) Add the header links when listing your blobs.
@@ -32,7 +32,6 @@ end
 </table>
 
 3) Profit.
-
 
 
 
