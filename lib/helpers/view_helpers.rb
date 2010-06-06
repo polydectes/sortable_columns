@@ -10,14 +10,14 @@ module SortableColumns
       
       if session[:sortable_columns][sortable.to_s.downcase.to_sym]
         if session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym] == "asc"
-          return { :sort_by => column.to_s, :order => 'desc' }
+          return { :sort_by => { sortable.to_s.downcase.to_sym => column.to_s }, :order => { sortable.to_s.downcase.to_sym => 'desc'} }
         else
-          return { :sort_by => column.to_s, :order => 'asc' }  
+          return { :sort_by => { sortable.to_s.downcase.to_sym => column.to_s }, :order => { sortable.to_s.downcase.to_sym => 'asc' } }
         end
       end
       
       # default
-      return { :sort_by => column.to_s, :order => 'desc' }
+      return { :sort_by => { sortable.to_s.downcase.to_sym => column.to_s }, :order => { sortable.to_s.downcase.to_sym => 'desc' } }
     end
   
   private
