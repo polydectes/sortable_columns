@@ -8,7 +8,7 @@ module SortableColumns
       validate_params(sortable)
       store_sort(sortable)
       if session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym][params[:sort_by][sortable.to_s.downcase.to_sym]]
-        result = "#{session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym]}.#{params[:sort_by].delete(sortable.to_s.downcase.to_sym)} #{params[:order].delete(sortable.to_s.downcase.to_sym)}"
+        result = "#{session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym][params[:sort_by].delete(sortable.to_s.downcase.to_sym)]} #{params[:order].delete(sortable.to_s.downcase.to_sym)}"
         params.delete(:sort_by)
         params.delete(:order)
         return result
@@ -27,7 +27,8 @@ module SortableColumns
         else
           column = col_name 
         end
-        return "#{column.to_s} #{session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym]}"
+        result = "#{column.to_s} #{session[:sortable_columns][sortable.to_s.downcase.to_sym][col_name.to_sym]}"
+        return result
       end
     end
   end
