@@ -47,8 +47,8 @@ private
 
   def add_custom_sort_keys( sortable, custom_keys = {} )
     session[:sortable_columns] ||= Hash.new
-    session[:sortable_columns][:custom_sort] ||= {}
-    session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym] ||= {}
+    session[:sortable_columns][:custom_sort] ||= Hash.new
+    session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym] ||= Hash.new
     custom_keys.each do |key,value|
       session[:sortable_columns][:custom_sort][sortable.to_s.downcase.to_sym][key] = value
     end
